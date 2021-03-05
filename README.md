@@ -9,5 +9,5 @@ The latter uses an Incomplete Cholesky (0) split preconditioner.
 
 ## References
 
---<a id="1">[1]</a>
-Saad, Yousef (2000). Iterative Methods for Sparse Linear Systems. SIAM.
+<a id="1">[1]</a>
+Saad, Yousef (2003). Iterative Methods for Sparse Linear Systems. SIAM.

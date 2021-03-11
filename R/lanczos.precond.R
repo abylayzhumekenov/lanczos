@@ -4,6 +4,7 @@
 #' Then it is handled by a plain Lanczos algorithm.
 #' @param A A symmetric positive definite matrix for the system Ax = b. No default value.
 #' @param b A right hand side vector in Ax = b. No default value.
+#' @param x An initial guess which is produces the first residual r. Default is a random vector.
 #' @param m Maximum number of iterations to be run. Default is length(b).
 #' @param tol The relative tolerance for residual norms. Default is 1e-7.
 #' @param diag.comp A type of diagonal compensation for IC(0) preconditioning. Default is "aj".
@@ -18,7 +19,7 @@
 #' res = planczos(A, b)
 #' plot(solve(A, b), t="l")
 #' lines(res$x, col="red")
-planczos = function(A, b, m = length(b), tol = 1e-7, diag.comp = "aj", alpha = 1, L){
+planczos = function(A, b, x = rnorm(length(b)), m = length(b), tol = 1e-7, diag.comp = "aj", alpha = 1, L){
     # preconditioning
     cat(paste("Preconditioning: started...\n"))
     time.0 = as.numeric(Sys.time())
@@ -29,13 +30,14 @@ planczos = function(A, b, m = length(b), tol = 1e-7, diag.comp = "aj", alpha = 1
     }
     Q = solve(L, A)%*%solve(t(L))
     c = solve(L, b)
+    x = t(L)%*%x
     time.1 = as.numeric(Sys.time())
     time.precond = time.1 - time.0
     cat(paste("Preconditioning: finished (", round(time.precond, 5), " sec).\n", sep=""))
 
     # solving
     cat(paste("Lanczos: started...\n"))
-    out.lanc = lanczos(Q, c, m, tol)
+    out.lanc = lanczos(Q, c, x, m, tol)
     x = drop(solve(t(L), out.lanc$x))
     time.2 = as.numeric(Sys.time())
     time.solve = time.2 - time.1

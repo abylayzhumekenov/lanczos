@@ -4,12 +4,14 @@
 \alias{lanczos}
 \title{Lanczos algorithm}
 \usage{
-lanczos(A, b, m = length(b), tol = 1e-07)
+lanczos(A, b, x = rnorm(length(b)), m = length(b), tol = 1e-07)
 }
 \arguments{
 \item{A}{A symmetric positive definite matrix for the system Ax = b. No default value.}
 
 \item{b}{A right hand side vector in Ax = b. No default value.}
+
+\item{x}{An initial guess which produces the first residual r=b-Ax. Default is a random vector.}
 
 \item{m}{Maximum number of iterations to be run. Default is length(b).}
 

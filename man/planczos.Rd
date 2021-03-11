@@ -4,12 +4,23 @@
 \alias{planczos}
 \title{Preconditioned Lanczos algorithm}
 \usage{
-planczos(A, b, m = length(b), tol = 1e-07, diag.comp = "aj", alpha = 1, L)
+planczos(
+  A,
+  b,
+  x = rnorm(length(b)),
+  m = length(b),
+  tol = 1e-07,
+  diag.comp = "aj",
+  alpha = 1,
+  L
+)
 }
 \arguments{
 \item{A}{A symmetric positive definite matrix for the system Ax = b. No default value.}
 
 \item{b}{A right hand side vector in Ax = b. No default value.}
+
+\item{x}{An initial guess which is produces the first residual r. Default is a random vector.}
 
 \item{m}{Maximum number of iterations to be run. Default is length(b).}
 

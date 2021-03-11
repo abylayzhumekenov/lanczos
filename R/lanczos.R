@@ -5,6 +5,7 @@
 #' coefficients.
 #' @param A A symmetric positive definite matrix for the system Ax = b. No default value.
 #' @param b A right hand side vector in Ax = b. No default value.
+#' @param x An initial guess which produces the first residual r=b-Ax. Default is a random vector.
 #' @param m Maximum number of iterations to be run. Default is length(b).
 #' @param tol The relative tolerance for residual norms. Default is 1e-7.
 #' @keywords Lanczos, Krylov, tridiagonalization
@@ -16,15 +17,13 @@
 #' res = lanczos(A, b, 80)
 #' plot(solve(A, b), t="l")
 #' lines(res$x, col="red")
-lanczos = function(A, b, m = length(b), tol = 1e-7){
+lanczos = function(A, b, x = rnorm(length(b)), m = length(b), tol = 1e-7){
     # initializing vectors and matrices
     n = length(b)
     V = matrix(NA, n, m+1)
     alpha = numeric(m)
     beta = numeric(m+1)
     cont = numeric(m)
-    x = numeric(n)
-    # x = rnorm(n)
     # the first residual
     w = b - A%*%x
     beta[1] = norm(w, "2")

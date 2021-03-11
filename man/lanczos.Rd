@@ -11,7 +11,7 @@ lanczos(A, b, x = rnorm(length(b)), m = length(b), tol = 1e-07)
 
 \item{b}{A right hand side vector in Ax = b. No default value.}
 
-\item{x}{An initial guess which produces the first residual r=b-Ax. Default is a random vector.}
+\item{x}{An initial guess which produces the first residual r = b - Ax. Default is a random vector.}
 
 \item{m}{Maximum number of iterations to be run. Default is length(b).}
 

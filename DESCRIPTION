@@ -1,13 +1,13 @@
 Package: lanczos
-Title: solves linear systems using lanczos algorithm
+Title: What the Package Does (One Line, Title Case)
 Version: 0.0.0.9000
 Authors@R: 
-    person(given = "Abylay",
-           family = "Zhumekenov",
+    person(given = "First",
+           family = "Last",
            role = c("aut", "cre"),
-           email = "abylay.zhumekenov@kaust.edu.sa",
+           email = "first.last@example.com",
            comment = c(ORCID = "YOUR-ORCID-ID"))
-Description: Solves linear systems using Lanczos or preconditioned Lanczos iterations. 
+Description: What the package does (one paragraph).
 License: `use_mit_license()`, `use_gpl3_license()` or friends to
     pick a license
 Encoding: UTF-8

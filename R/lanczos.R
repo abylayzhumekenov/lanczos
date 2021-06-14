@@ -1,6 +1,6 @@
 #' Lanczos algorithm
 #'
-#' The function solve a symmetric positive definite system by factoring the matrix into A=VHV^T form.
+#' The function solves a symmetric positive definite system by factoring the matrix into A=VHV^T form.
 #' Here, V is matrix containing Krylov orthogonal vectors, and H is a tridiagonal matrix with Lanczos
 #' coefficients.
 #' @param A A symmetric positive definite matrix for the system Ax = b. No default value.

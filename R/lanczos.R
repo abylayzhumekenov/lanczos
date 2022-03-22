@@ -23,7 +23,8 @@ lanczos = function(A, b, x = rnorm(length(b)), m = length(b), tol = 1e-7){
     V = matrix(NA, n, m+1)
     alpha = numeric(m)
     beta = numeric(m+1)
-    cont = numeric(m)
+    det = numeric(m)
+    # cont = numeric(m)
     # the first residual
     w = b - A%*%x
     beta[1] = norm(w, "2")
@@ -42,14 +43,16 @@ lanczos = function(A, b, x = rnorm(length(b)), m = length(b), tol = 1e-7){
             w = w - V[,k] * drop(t(V[,k])%*%w)
         }
         beta[j+1] = norm(w, "2")
-        # computing continuant (i.e. determinant)
-        if(j == 1){
-            cont[j] = alpha[j]
-        } else if(j == 2){
-            cont[j] = alpha[j] * cont[j-1] - beta[j]^2
-        } else {
-            cont[j] = alpha[j] * cont[j-1] - beta[j]^2 * cont[j-2]
-        }
+        det[j] = determinant(tridiag(alpha[1:j], beta[2:j]))$modulus[1]
+        # Overflows...
+        # # computing continuant (i.e. determinant)
+        # if(j == 1){
+        #     cont[j] = alpha[j]
+        # } else if(j == 2){
+        #     cont[j] = alpha[j] * cont[j-1] - beta[j]^2
+        # } else {
+        #     cont[j] = alpha[j] * cont[j-1] - beta[j]^2 * cont[j-2]
+        # }
         # check for early convergence or append Krylov vector
         if(beta[j+1]/beta[1] < tol){
             cat(paste("Lanczos: converged at iteration #", j, ".\n", sep=""))
@@ -63,10 +66,11 @@ lanczos = function(A, b, x = rnorm(length(b)), m = length(b), tol = 1e-7){
     }
     # constructing smaller system and solving it
     cat(paste("Lanczos: back solving...\n"))
-    cont = cont[1:m]
+    det = det[1:m]
+    # cont = cont[1:m]
     H = tridiag(alpha[1:m], beta[2:m])
     V = V[,1:m]
     y = as.matrix(solve(H, c(beta[1], numeric(m-1)), tol = 1e-16))
     x = x + drop(V%*%y)
-    return(list(x = x, V = V, H = H, det = log(cont)))
+    return(list(x = x, V = V, H = H, det = det))
 }

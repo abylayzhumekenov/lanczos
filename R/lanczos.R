@@ -43,9 +43,13 @@ lanczos = function(A, b, x = rnorm(length(b)), m = length(b), tol = 1e-7){
             w = w - V[,k] * drop(t(V[,k])%*%w)
         }
         beta[j+1] = norm(w, "2")
-        det[j] = determinant(tridiag(alpha[1:j], beta[2:j]))$modulus[1]
-        # Overflows...
-        # # computing continuant (i.e. determinant)
+        # computing continuant (i.e. determinant)
+        if(j == 1){
+            det[j] = determinant(alpha[1])$modulus[1]
+        } else {
+            det[j] = determinant(tridiag(alpha[1:j], beta[2:j]))$modulus[1]
+        }
+        # # Overflows...
         # if(j == 1){
         #     cont[j] = alpha[j]
         # } else if(j == 2){

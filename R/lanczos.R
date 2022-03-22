@@ -44,9 +44,7 @@ lanczos = function(A, b, x = rnorm(length(b)), m = length(b), tol = 1e-7){
         }
         beta[j+1] = norm(w, "2")
         # computing continuant (i.e. determinant)
-        # print(determinant(tridiag(alpha[1:j], beta[2:j])))
-        det[j] = determinant.matrix(tridiag(alpha[1:j], beta[2:j]))$modulus[1]
-        print(j)
+        det[j] = determinant(as.matrix(tridiag(alpha[1:j], beta[2:j])))$modulus[1]
         # # Overflows...
         # if(j == 1){
         #     cont[j] = alpha[j]

@@ -9,7 +9,7 @@
 #' @param tol The relative tolerance for residual norms. Default is 1e-7.
 #' @param diag.comp A type of diagonal compensation for IC(0) preconditioning. Default is "aj".
 #' @param alpha The scale of diagonal compensation. Default is 1.
-#' @param L The preconditioner to supply. If missing, the IC(0) is above parameters is computed.
+#' @param L The preconditioner to supply. If missing, the IC(0) with parameters above is computed.
 #' @keywords Conjugate Gradient, Lanczos, Krylov
 #' @export
 #' @examples

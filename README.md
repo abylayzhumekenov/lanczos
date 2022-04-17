@@ -3,7 +3,7 @@
 ## Description
 
 Lanczos algorithm implemented in R language. 
-Used for solving symmetric positive definite linear systems.
+Used for solving symmetric (positive definite) linear systems.
 A preconditioned version of the method is also implemented.
 The latter uses an Incomplete Cholesky (0) split preconditioner.
 

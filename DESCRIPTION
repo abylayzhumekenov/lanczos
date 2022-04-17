@@ -1,15 +1,13 @@
 Package: lanczos
-Title: What the Package Does (One Line, Title Case)
+Title: Lanczos algorithm implemented in R language
 Version: 0.0.0.9000
 Authors@R: 
-    person(given = "First",
-           family = "Last",
+    person(given = "Abylay",
+           family = "Zhumekenov",
            role = c("aut", "cre"),
-           email = "first.last@example.com",
-           comment = c(ORCID = "YOUR-ORCID-ID"))
-Description: What the package does (one paragraph).
-License: `use_mit_license()`, `use_gpl3_license()` or friends to
-    pick a license
+           email = "ablay94z@gmail.com")
+Description: Lanczos algorithm implemented in R language. Used for solving symmetric (positive definite) linear systems. A preconditioned version of the method is also implemented. The latter uses an Incomplete Cholesky (0) split preconditioner.
+License: `use_mit_license()`
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)

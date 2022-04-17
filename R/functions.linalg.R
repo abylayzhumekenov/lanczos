@@ -29,7 +29,7 @@ tridiag = function(a, b, c = b){
     if(length(a)==1 & (missing(b) | missing(c))){
         return(matrix(a))
     } else if(length(a)==2){
-        return(Matrix(c(a[1],b[1],c[1],a[2]), 2))
+        return(matrix(c(a[1],b[1],c[1],a[2]), 2))
     } else {
         H = diag(a)
         diag(H[-1,]) = b[1:(length(a)-1)]

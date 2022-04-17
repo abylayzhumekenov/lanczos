@@ -36,12 +36,16 @@ lanczos = function(A, b, x = rnorm(length(b)), m = length(b), tol = 1e-7){
         # three term reccurence relation
         w = A%*%V[,j]
         alpha[j] = drop(t(V[,j])%*%w)
-        for(k in 1:j){
-            w = w - V[,k] * drop(t(V[,k])%*%w)
-        }
-        for(k in 1:j){
-            w = w - V[,k] * drop(t(V[,k])%*%w)
-        }
+        # # Iterated MGS is costly and slow
+        # for(k in 1:j){
+        #     w = w - V[,k] * drop(t(V[,k])%*%w)
+        # }
+        # for(k in 1:j){
+        #     w = w - V[,k] * drop(t(V[,k])%*%w)
+        # }
+        # # Use iterated CGS instead, cheaper but of the same quality
+        w = w - V[,1:j] %*% (t(V[,1:j])%*%w)
+        w = w - V[,1:j] %*% (t(V[,1:j])%*%w)
         beta[j+1] = norm(w, "2")
         # computing continuant (i.e. determinant)
         det[j] = determinant(as.matrix(tridiag(alpha[1:j], beta[2:j])))$modulus[1]
